@@ -1,5 +1,6 @@
 package com.example.donichat;
 
+import com.example.donichat.model.Connections;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        Connections con=new Connections();
+        con.conectar();
     }
 }
