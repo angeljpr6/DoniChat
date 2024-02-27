@@ -6,12 +6,16 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Server {
+
+
     public static void main(String[] args) {
+        ArrayList<Message> listMessage=new ArrayList<>();
         ServerSocket servidor = null;
         Socket sc = null;
         int puerto = 5000;
@@ -36,9 +40,10 @@ public class Server {
                         System.out.println("ID Receptor: " + message.getIdReceptor());
                         System.out.println("Mensaje: " + message.getMessage());
                         out.writeUTF("Mensaje recibido");
+                        listMessage.add(new Message(message.getIdSender(), message.getIdReceptor(), message.getMessage()));
                         break;
                     case 2:
-                        out.writeUTF("Operación de recepción de mensaje");
+                        Server.sendMessage(out,listMessage);
                         break;
                     default:
                         System.out.println("Operación no válida");
@@ -48,6 +53,16 @@ public class Server {
                 sc.close();
                 System.out.println("Cliente desconectado");
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void sendMessage(DataOutputStream out, ArrayList<Message> listMessage){
+        try {
+            Gson gson = new Gson();
+            String jsonListMessage = gson.toJson(listMessage);
+            out.writeUTF(jsonListMessage);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -25,8 +25,8 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
-        Conection con = new Conection();
-        con.conectar();
+        //Conection con = new Conection();
+        //con.conectar();
         launch();
     }
 }

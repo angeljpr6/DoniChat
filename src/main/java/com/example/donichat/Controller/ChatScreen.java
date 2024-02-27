@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+
 public class ChatScreen {
     public TextField areaMessage;
     public TextArea conversation;
@@ -17,12 +19,20 @@ public class ChatScreen {
 
     public void sendMessage(ActionEvent actionEvent) {
         Message m=new Message(1,2, areaMessage.getText());
-
         c.sendMessage(m);
+        areaMessage.setText("");
     }
 
     public void provisional(ActionEvent actionEvent) {
+        ArrayList<Message> listMessage=new ArrayList<>();
+        listMessage=c.receiveMessage();
+        fillField(listMessage);
 
-        c.receiveMessage();
+    }
+
+    public void fillField(ArrayList<Message>listMessage){
+        for (int i = 0; i < listMessage.size(); i++) {
+            conversation.setText(conversation.getText()+listMessage.get(i).idSender+": "+listMessage.get(i).getMessage()+"\n");
+        }
     }
 }
