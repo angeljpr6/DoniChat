@@ -3,7 +3,9 @@ package com.example.donichat;
 
 
 import com.example.donichat.model.Conections.Conection;
+import com.example.donichat.model.ControllerDB;
 import com.example.donichat.model.Message;
+import com.example.donichat.model.User;
 import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -2,6 +2,8 @@ package com.example.donichat;
 
 
 import com.example.donichat.model.Conections.Conection;
+import com.example.donichat.model.ControllerDB;
+import com.example.donichat.model.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,9 +23,14 @@ public class Launcher2 extends Application {
     }
 
     public static void main(String[] args) {
+        Conection con=new Conection();
+        con.conectar();
+        User user1=new User(1,"jdjd");
+        User user2=new User(2,"jdjd");
+
+        ControllerDB.getConversation(user1,user2);
         launch();
-        //Conection con=new Conection();
-        //con.conectar();
+
 
     }
 }
