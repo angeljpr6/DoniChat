@@ -13,6 +13,12 @@ public class ChatScreen {
     public Client c=new Client();
 
     public void sendMessage(ActionEvent actionEvent) {
+
         c.sendMessage(areaMessage.getText());
+    }
+
+    public void provisional(ActionEvent actionEvent) {
+
+        c.receiveMessage();
     }
 }
