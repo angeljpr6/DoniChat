@@ -25,6 +25,7 @@ public class Client {
             out=new DataOutputStream(sc.getOutputStream());
             Gson gson = new Gson();
             out.writeInt(1); // Código de operación para enviar un mensaje
+
             String jsonMessage = gson.toJson(message);
             out.writeUTF(jsonMessage);
             String response = in.readUTF();

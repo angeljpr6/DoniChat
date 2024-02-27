@@ -12,6 +12,6 @@
       <Button layoutX="313.0" layoutY="341.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="32.0" prefWidth="99.0" text="Button" />
       <TextArea fx:id="conversation" layoutX="31.0" layoutY="46.0" prefHeight="274.0" prefWidth="375.0" />
       <Label fx:id="userName" layoutX="41.0" layoutY="14.0" text="User" textFill="WHITE" />
-      <Button layoutX="193.0" layoutY="10.0" mnemonicParsing="false" onAction="#provisional" text="Button" />
+      <Button layoutX="193.0" layoutY="10.0" mnemonicParsing="false" onAction="#getMessages" text="Button" />
    </children>
 </AnchorPane>
