@@ -16,7 +16,7 @@ public class ControllerDB {
         PreparedStatement stm;
         try {
             ArrayList<Message> listMessage=new ArrayList<>();
-            stm = c.prepareStatement("SELECT idremitente, iddestinatario, mensaje FROM mensajes WHERE (idremitente = ? AND iddestinatario = ?) OR (idremitente = ? AND iddestinatario = ?);");
+            stm = c.prepareStatement("SELECT idremitente, iddestinatario, mensaje FROM mensajes WHERE (idremitente = ? AND iddestinatario = ?) OR (idremitente = ? AND iddestinatario = ?) order by idmensaje;");
             stm.setInt(1, id);
             stm.setInt(2, id2);
             stm.setInt(3, id2);

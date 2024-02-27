@@ -73,7 +73,7 @@ public class ChatScreen implements Initializable {
                     System.out.println(user2.getId());
                 }
 
-                Thread.sleep(1000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
