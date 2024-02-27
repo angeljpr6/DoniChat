@@ -76,6 +76,18 @@ public class ControllerDB {
         }
         return user;
     }
+    public static void insertMessage(int idSender, int idReceptor, String message){
+        PreparedStatement stm;
+        try {
+            stm = c.prepareStatement("insert into mensajes values(default,?,?,?,localtime());");
+            stm.setInt(1, idSender);
+            stm.setInt(2, idReceptor);
+            stm.setString(3,message);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

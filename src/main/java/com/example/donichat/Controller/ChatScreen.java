@@ -25,7 +25,7 @@ public class ChatScreen implements Initializable {
     public TableColumn<User, String> usersNamesColumn;
 
     public void sendMessage(ActionEvent actionEvent) {
-        Message m=new Message(1,2, areaMessage.getText());
+        Message m=new Message(user.getId(),2, areaMessage.getText());
         c.sendMessage(m);
         areaMessage.setText("");
     }
