@@ -1,8 +1,10 @@
 package com.example.donichat;
 
 
+import com.example.donichat.model.Conections.Client;
 import com.example.donichat.model.Conections.Conection;
 
+import com.example.donichat.model.Conections.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

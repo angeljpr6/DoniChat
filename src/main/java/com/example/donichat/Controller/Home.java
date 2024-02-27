@@ -11,8 +11,5 @@ public class Home {
     @FXML
     protected void onHelloButtonClick() {
 
-        Client client =new Client();
-
-        client.sendMessage("Hola");
     }
 }
