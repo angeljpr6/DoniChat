@@ -1,12 +1,18 @@
 package com.example.donichat.model.Conections;
 
+import com.example.donichat.model.Message;
+import com.google.gson.Gson;
+import java.io.*;
+import java.net.*;
+
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
 
-    public void sendMessage(String message) {
+    public void sendMessage(Message message) {
         String host="127.0.0.1";
         int puerto=5000;
         DataInputStream in;
@@ -15,9 +21,12 @@ public class Client {
             Socket sc=new Socket(host,puerto);
             in=new DataInputStream(sc.getInputStream());
             out=new DataOutputStream(sc.getOutputStream());
-            out.writeUTF(message);
-            message=in.readUTF();
-            System.out.println(message);
+            Gson gson = new Gson();
+            String jsonMessage = gson.toJson(message);
+            System.out.println(jsonMessage);
+            out.writeUTF(jsonMessage);
+            jsonMessage=in.readUTF();
+
             sc.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

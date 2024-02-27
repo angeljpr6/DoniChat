@@ -1,14 +1,14 @@
 package com.example.donichat;
 
 
-import com.example.donichat.model.Conections.Client;
-import com.example.donichat.model.Conections.Conection;
 
-import com.example.donichat.model.Conections.Server;
+import com.example.donichat.model.Message;
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -25,8 +25,9 @@ public class Launcher extends Application {
 
     public static void main(String[] args) {
         launch();
-        Conection con=new Conection();
-        con.conectar();
+
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.donichat.Controller;
-
+import com.google.gson.Gson;
 import com.example.donichat.model.Conections.Client;
+import com.example.donichat.model.Message;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -13,8 +14,9 @@ public class ChatScreen {
     public Client c=new Client();
 
     public void sendMessage(ActionEvent actionEvent) {
+        Message m=new Message(1,2, areaMessage.getText());
 
-        c.sendMessage(areaMessage.getText());
+        c.sendMessage(m);
     }
 
     public void provisional(ActionEvent actionEvent) {
