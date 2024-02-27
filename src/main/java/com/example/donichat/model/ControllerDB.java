@@ -12,15 +12,15 @@ import java.util.ArrayList;
 public class ControllerDB {
     private static Connection c = Conection.con;
 
-    public static ArrayList<Message> getConversation(User sender, User receptor){
+    public static ArrayList<Message> getConversation(int id, int id2){
         PreparedStatement stm;
         try {
             ArrayList<Message> listMessage=new ArrayList<>();
             stm = c.prepareStatement("SELECT idremitente, iddestinatario, mensaje FROM mensajes WHERE (idremitente = ? AND iddestinatario = ?) OR (idremitente = ? AND iddestinatario = ?);");
-            stm.setInt(1, sender.getId());
-            stm.setInt(2, receptor.getId());
-            stm.setInt(3, receptor.getId());
-            stm.setInt(4, sender.getId());
+            stm.setInt(1, id);
+            stm.setInt(2, id2);
+            stm.setInt(3, id2);
+            stm.setInt(4, id);
             ResultSet result = stm.executeQuery();
             while (result.next()) {
                 int idSender = result.getInt( 1);

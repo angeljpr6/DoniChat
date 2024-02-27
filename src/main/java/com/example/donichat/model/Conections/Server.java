@@ -1,5 +1,6 @@
 package com.example.donichat.model.Conections;
 
+import com.example.donichat.model.ControllerDB;
 import com.example.donichat.model.Message;
 import com.example.donichat.model.User;
 import com.google.gson.Gson;
@@ -46,7 +47,11 @@ public class Server {
                         listMessage.add(new Message(message.getIdSender(), message.getIdReceptor(), message.getMessage()));
                         break;
                     case 2:
-                        Server.sendMessage(out,listMessage);
+                        int id;
+                        int id2;
+                        id=in.readInt();
+                        id2=in.readInt();
+                        Server.sendMessage(out,listMessage,id,id2);
                         break;
                     case 3:
                         String userName = in.readUTF();
@@ -68,8 +73,10 @@ public class Server {
         }
     }
 
-    public static void sendMessage(DataOutputStream out, ArrayList<Message> listMessage){
+    public static void sendMessage(DataOutputStream out, ArrayList<Message> listMessage, int id, int id2){
         try {
+            listMessage.clear();
+            listMessage= ControllerDB.getConversation(id,id2);
             Gson gson = new Gson();
             String jsonListMessage = gson.toJson(listMessage);
             out.writeUTF(jsonListMessage);

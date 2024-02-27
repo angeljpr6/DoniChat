@@ -1,5 +1,6 @@
 package com.example.donichat.model.Conections;
 
+import com.example.donichat.Controller.ChatScreen;
 import com.example.donichat.Controller.LogIn;
 import com.example.donichat.model.Message;
 import com.example.donichat.model.User;
@@ -48,6 +49,8 @@ public class Client {
             in=new DataInputStream(sc.getInputStream());
             out=new DataOutputStream(sc.getOutputStream());
             out.writeInt(2); // Código de operación para recibir un mensaje
+            out.writeInt(ChatScreen.user.getId());
+            out.writeInt(2);
             message=in.readUTF();
             Gson gson = new Gson();
             listMessage = gson.fromJson(message, new TypeToken<ArrayList<Message>>() {}.getType());
