@@ -23,9 +23,9 @@ public class Client {
             out=new DataOutputStream(sc.getOutputStream());
             Gson gson = new Gson();
             String jsonMessage = gson.toJson(message);
-            System.out.println(jsonMessage);
             out.writeUTF(jsonMessage);
             jsonMessage=in.readUTF();
+            System.out.println(jsonMessage);
 
             sc.close();
         } catch (IOException e) {
