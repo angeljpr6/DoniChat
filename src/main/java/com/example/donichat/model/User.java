@@ -9,4 +9,13 @@ public class User {
         this.id = id;
         this.name = name;
     }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public void verifyUser(){
+
+    }
 }

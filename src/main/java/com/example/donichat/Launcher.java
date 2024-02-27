@@ -2,6 +2,7 @@ package com.example.donichat;
 
 
 
+import com.example.donichat.model.Conections.Conection;
 import com.example.donichat.model.Message;
 import com.google.gson.Gson;
 import javafx.application.Application;
@@ -24,10 +25,8 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) {
+        Conection con = new Conection();
+        con.conectar();
         launch();
-
-
-
-
     }
 }
