@@ -18,7 +18,7 @@ public class ChatScreen implements Initializable {
     public Label userName;
     public static User user;
     public static User user2;
-    public Client c=new Client();
+    public static Client c=new Client();
 
     public void sendMessage(ActionEvent actionEvent) {
         Message m=new Message(1,2, areaMessage.getText());

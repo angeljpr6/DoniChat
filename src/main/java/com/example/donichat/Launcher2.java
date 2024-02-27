@@ -15,7 +15,7 @@ public class Launcher2 extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Launcher2.class.getResource("ChatScreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Launcher2.class.getResource("log-in.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);

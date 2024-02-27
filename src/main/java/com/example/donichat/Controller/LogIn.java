@@ -1,5 +1,6 @@
 package com.example.donichat.Controller;
 
+import com.example.donichat.model.Conections.Client;
 import com.example.donichat.model.ControllerDB;
 import com.example.donichat.model.User;
 import javafx.event.ActionEvent;
@@ -16,18 +17,19 @@ public class LogIn {
     public TextField userName;
     public TextField userPassword;
     public Label dataError;
+    public static User userLog;
 
     public void logInUser(ActionEvent actionEvent) {
-        User user1=verifyData();
+        User user=new User(userName.getText(),userPassword.getText());
+        userLog=user;
+
+        User user1=ChatScreen.c.login();
         if (user1!=null){
             ChatScreen.user = user1;
             changeWindow();
+        }else{
+            dataError.setVisible(true);
         }
-    }
-
-    public User verifyData(){
-        User user1=ControllerDB.verifyUser(userName.getText(),userPassword.getText());
-        return user1;
     }
 
     public void changeWindow(){

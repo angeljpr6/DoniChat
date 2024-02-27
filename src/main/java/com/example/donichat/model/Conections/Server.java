@@ -51,7 +51,9 @@ public class Server {
                     case 3:
                         String userName = in.readUTF();
                         String userPassword = in.readUTF();
-                        verifyUser(userName,userPassword);
+                        User user=verifyUser(userName,userPassword);
+                        String userJson= gson.toJson(user);
+                        out.writeUTF(userJson);
                         break;
                     default:
                         System.out.println("Operación no válida");
