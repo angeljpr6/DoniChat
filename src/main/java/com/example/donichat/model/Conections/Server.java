@@ -48,7 +48,11 @@ public class Server {
                         int id2;
                         id=in.readInt();
                         id2=in.readInt();
-                        Server.sendMessage(out,listMessage,id,id2);
+                        if(id2!=0){
+                            Server.sendMessage(out,listMessage,id,id2);
+                        }else {
+                            out.writeUTF("no hay mensajes");
+                        }
                         break;
                     case 3:
                         String userName = in.readUTF();

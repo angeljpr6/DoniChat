@@ -78,5 +78,6 @@ public class ChatScreen implements Initializable {
 
     public void changeUser(MouseEvent mouseEvent) {
         user2= (User) usersTable.getSelectionModel().getSelectedItem();
+        System.out.println(user2.getId()+user2.getName());
     }
 }

@@ -50,15 +50,27 @@ public class Client {
             out=new DataOutputStream(sc.getOutputStream());
             out.writeInt(2); // Código de operación para recibir un mensaje
             out.writeInt(ChatScreen.user.getId());
-            out.writeInt(2);
-            message=in.readUTF();
-            Gson gson = new Gson();
-            listMessage = gson.fromJson(message, new TypeToken<ArrayList<Message>>() {}.getType());
-            System.out.println("Mensaje recibido del servidor: " + message);
-            sc.close();
-            for (int i = 0; i < listMessage.size(); i++) {
-                System.out.println(listMessage.get(i).getMessage());
+            if (ChatScreen.user2!=null){
+                out.writeInt(ChatScreen.user2.getId());
+            }else {
+                out.writeInt(0);
             }
+
+            if(ChatScreen.user2==null){
+                message=in.readUTF();
+                System.out.println(message);
+            }else {
+                message=in.readUTF();
+                Gson gson = new Gson();
+                listMessage = gson.fromJson(message, new TypeToken<ArrayList<Message>>() {}.getType());
+                System.out.println("Mensaje recibido del servidor: " + message);
+                sc.close();
+                for (int i = 0; i < listMessage.size(); i++) {
+                    System.out.println(listMessage.get(i).getMessage());
+                }
+            }
+
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
