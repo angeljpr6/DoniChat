@@ -34,7 +34,22 @@ public class ControllerDB {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public static boolean verifyUser(String userName,String userPassword){
+        PreparedStatement stm;
+        try {
+            stm = c.prepareStatement("SELECT * from usuarios where nombre=? and clave=?;");
+            stm.setString(1, userName);
+            stm.setString(2, userPassword);
+            ResultSet result = stm.executeQuery();
+            if (result.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
 

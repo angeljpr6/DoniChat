@@ -41,9 +41,6 @@ public class User {
         this.password = password;
     }
 
-    public void verifyUser(){
-
-    }
 
 
 }

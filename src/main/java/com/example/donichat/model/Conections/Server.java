@@ -1,6 +1,7 @@
 package com.example.donichat.model.Conections;
 
 import com.example.donichat.model.Message;
+import com.example.donichat.model.User;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.example.donichat.model.ControllerDB.verifyUser;
 
 public class Server {
 
@@ -44,6 +47,11 @@ public class Server {
                         break;
                     case 2:
                         Server.sendMessage(out,listMessage);
+                        break;
+                    case 3:
+                        String userName = in.readUTF();
+                        String userPassword = in.readUTF();
+                        verifyUser(userName,userPassword);
                         break;
                     default:
                         System.out.println("Operación no válida");

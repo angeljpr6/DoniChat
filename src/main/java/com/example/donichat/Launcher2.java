@@ -23,12 +23,7 @@ public class Launcher2 extends Application {
     }
 
     public static void main(String[] args) {
-        Conection con=new Conection();
-        con.conectar();
-        User user1=new User(1,"jdjd");
-        User user2=new User(2,"jdjd");
 
-        ControllerDB.getConversation(user1,user2);
         launch();
 
 
