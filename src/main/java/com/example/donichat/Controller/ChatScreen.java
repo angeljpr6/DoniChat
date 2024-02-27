@@ -2,11 +2,13 @@ package com.example.donichat.Controller;
 import com.example.donichat.model.User;
 import com.example.donichat.model.Conections.Client;
 import com.example.donichat.model.Message;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class ChatScreen implements Initializable {
     public static User user;
     public static User user2;
     public static Client c=new Client();
+    public TableView usersTable;
+    public TableColumn<User, String> usersNamesColumn;
 
     public void sendMessage(ActionEvent actionEvent) {
         Message m=new Message(1,2, areaMessage.getText());
@@ -33,6 +37,18 @@ public class ChatScreen implements Initializable {
 
     }
 
+    public void fillUsersTable(){
+        ArrayList<User> users = c.getUsers();
+        ObservableList<User> userList = FXCollections.observableArrayList();
+
+        userList.addAll(users);
+
+        usersNamesColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        usersTable.setItems(userList);
+
+    }
+
     public void fillField(ArrayList<Message>listMessage){
         conversation.setText("");
         for (int i = 0; i < listMessage.size(); i++) {
@@ -44,6 +60,7 @@ public class ChatScreen implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Thread thread = new Thread(this::periodicTask);
         thread.start();
+        fillUsersTable();
 
     }
 
@@ -57,5 +74,9 @@ public class ChatScreen implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void changeUser(MouseEvent mouseEvent) {
+        user2= (User) usersTable.getSelectionModel().getSelectedItem();
     }
 }

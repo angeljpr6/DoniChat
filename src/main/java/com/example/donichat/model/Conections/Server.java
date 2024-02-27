@@ -60,6 +60,12 @@ public class Server {
                         String userJson= gson.toJson(user);
                         out.writeUTF(userJson);
                         break;
+                    case 4:
+                        ArrayList<User> users=ControllerDB.getAllUsers();
+                        String allUsers= gson.toJson(users);
+                        out.writeUTF(allUsers);
+
+                        break;
                     default:
                         System.out.println("Operación no válida");
                         break;

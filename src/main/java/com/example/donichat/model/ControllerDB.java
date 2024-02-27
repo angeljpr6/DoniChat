@@ -36,6 +36,27 @@ public class ControllerDB {
         }
     }
 
+    public static ArrayList<User> getAllUsers(){
+        PreparedStatement stm;
+        ArrayList<User> user = new ArrayList<>();
+
+        try {
+            stm = c.prepareStatement("SELECT * from usuarios;");
+
+            ResultSet result = stm.executeQuery();
+            while (result.next()) {
+                int id=result.getInt(1);
+                String name=result.getString(2);
+                user.add(new User(id,name));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return user;
+    }
+
     public static User verifyUser(String userName,String userPassword){
         PreparedStatement stm;
         User user=null;

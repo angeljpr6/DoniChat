@@ -86,6 +86,27 @@ public class Client {
             throw new RuntimeException(e);
         }
         return user1;
-
     }
+
+    public ArrayList<User> getUsers(){
+
+        ArrayList<User> users;
+        try {
+            Socket sc=new Socket(host,puerto);
+            in=new DataInputStream(sc.getInputStream());
+            out=new DataOutputStream(sc.getOutputStream());
+            Gson gson = new Gson();
+            out.writeInt(4); // Código de operación para enviar un mensaje
+
+            String response = in.readUTF();
+            users = gson.fromJson(response,  new TypeToken<ArrayList<User>>() {}.getType());
+            System.out.println("Respuesta del servidor: " + response);
+
+            sc.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
+    }
+
 }

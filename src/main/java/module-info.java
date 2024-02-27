@@ -11,6 +11,7 @@ module com.example.donichat {
     exports com.example.donichat;
     exports com.example.donichat.Controller;
     opens com.example.donichat.Controller to javafx.fxml, com.google.gson;
-    opens com.example.donichat.model to com.google.gson;
+    opens com.example.donichat.model to com.google.gson, javafx.base;
     opens com.example.donichat.model.Conections to com.google.gson;
+
 }
