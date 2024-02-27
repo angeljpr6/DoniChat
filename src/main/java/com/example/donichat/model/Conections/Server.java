@@ -27,14 +27,23 @@ public class Server {
                 in = new DataInputStream(sc.getInputStream());
                 out = new DataOutputStream(sc.getOutputStream());
 
-                String jsonMessage = in.readUTF();
-                Message message = gson.fromJson(jsonMessage, Message.class);
-
-                System.out.println("ID Sender: " + message.getIdSender());
-                System.out.println("ID Receptor: " + message.getIdReceptor());
-                System.out.println("Mensaje: " + message.getMessage());
-
-                out.writeUTF("Mensaje recibido");
+                int operationCode = in.readInt();
+                switch (operationCode) {
+                    case 1:
+                        String jsonMessage = in.readUTF();
+                        Message message = gson.fromJson(jsonMessage, Message.class);
+                        System.out.println("ID Sender: " + message.getIdSender());
+                        System.out.println("ID Receptor: " + message.getIdReceptor());
+                        System.out.println("Mensaje: " + message.getMessage());
+                        out.writeUTF("Mensaje recibido");
+                        break;
+                    case 2:
+                        out.writeUTF("Operación de recepción de mensaje");
+                        break;
+                    default:
+                        System.out.println("Operación no válida");
+                        break;
+                }
 
                 sc.close();
                 System.out.println("Cliente desconectado");

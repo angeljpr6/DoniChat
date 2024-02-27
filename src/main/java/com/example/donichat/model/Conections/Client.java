@@ -11,7 +11,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
-
     public void sendMessage(Message message) {
         String host="127.0.0.1";
         int puerto=5000;
@@ -22,11 +21,11 @@ public class Client {
             in=new DataInputStream(sc.getInputStream());
             out=new DataOutputStream(sc.getOutputStream());
             Gson gson = new Gson();
+            out.writeInt(1); // Código de operación para enviar un mensaje
             String jsonMessage = gson.toJson(message);
             out.writeUTF(jsonMessage);
-            jsonMessage=in.readUTF();
-            System.out.println(jsonMessage);
-
+            String response = in.readUTF();
+            System.out.println("Respuesta del servidor: " + response);
             sc.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -43,9 +42,9 @@ public class Client {
             Socket sc=new Socket(host,puerto);
             in=new DataInputStream(sc.getInputStream());
             out=new DataOutputStream(sc.getOutputStream());
-            out.writeUTF(message);
+            out.writeInt(2); // Código de operación para recibir un mensaje
             message=in.readUTF();
-            System.out.println(message);
+            System.out.println("Mensaje recibido del servidor: " + message);
             sc.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
