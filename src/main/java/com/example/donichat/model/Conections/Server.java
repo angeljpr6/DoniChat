@@ -40,11 +40,8 @@ public class Server {
                     case 1:
                         String jsonMessage = in.readUTF();
                         Message message = gson.fromJson(jsonMessage, Message.class);
-                        System.out.println("ID Sender: " + message.getIdSender());
-                        System.out.println("ID Receptor: " + message.getIdReceptor());
-                        System.out.println("Mensaje: " + message.getMessage());
                         out.writeUTF("Mensaje recibido");
-                        listMessage.add(new Message(message.getIdSender(), message.getIdReceptor(), message.getMessage()));
+                        ControllerDB.insertMessage(message.getIdSender(),message.getIdReceptor(),message.getMessage());
                         break;
                     case 2:
                         int id;
