@@ -25,7 +25,7 @@ public class ChatScreen implements Initializable {
     public TableColumn<User, String> usersNamesColumn;
 
     public void sendMessage(ActionEvent actionEvent) {
-        Message m=new Message(user.getId(),2, areaMessage.getText());
+        Message m=new Message(user.getId(), user2.getId(), areaMessage.getText());
         c.sendMessage(m);
         areaMessage.setText("");
     }
@@ -62,12 +62,16 @@ public class ChatScreen implements Initializable {
         thread.start();
         fillUsersTable();
 
+
     }
 
     private void periodicTask() {
         while (true) {
             try {
                 getMessages();
+                if (user2!=null){
+                    System.out.println(user2.getId());
+                }
 
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
