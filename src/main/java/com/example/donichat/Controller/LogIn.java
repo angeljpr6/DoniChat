@@ -1,5 +1,6 @@
 package com.example.donichat.Controller;
 
+import com.example.donichat.model.ControllerDB;
 import com.example.donichat.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -17,20 +18,16 @@ public class LogIn {
     public Label dataError;
 
     public void logInUser(ActionEvent actionEvent) {
-        User user = new User(userName.getText(),userPassword.getText());
-
-        if (verifyData(user)){
-            ChatScreen.user = user;
+        User user1=verifyData();
+        if (user1!=null){
+            ChatScreen.user = user1;
             changeWindow();
         }
     }
 
-    public boolean verifyData(User user){
-        boolean correctData = true;
-
-        // TODO: 27/02/2024 Conectar con la base de datos y comprobar que el usuario y contraseña coinciden
-
-        return correctData;
+    public User verifyData(){
+        User user1=ControllerDB.verifyUser(userName.getText(),userPassword.getText());
+        return user1;
     }
 
     public void changeWindow(){

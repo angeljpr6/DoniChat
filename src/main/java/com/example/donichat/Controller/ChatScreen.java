@@ -17,6 +17,7 @@ public class ChatScreen implements Initializable {
     public TextArea conversation;
     public Label userName;
     public static User user;
+    public static User user2;
     public Client c=new Client();
 
     public void sendMessage(ActionEvent actionEvent) {
@@ -42,8 +43,6 @@ public class ChatScreen implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Thread thread = new Thread(this::periodicTask);
-
-        // Iniciar el hilo
         thread.start();
 
     }

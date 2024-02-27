@@ -36,20 +36,24 @@ public class ControllerDB {
         }
     }
 
-    public static boolean verifyUser(String userName,String userPassword){
+    public static User verifyUser(String userName,String userPassword){
         PreparedStatement stm;
+        User user=null;
         try {
             stm = c.prepareStatement("SELECT * from usuarios where nombre=? and clave=?;");
             stm.setString(1, userName);
             stm.setString(2, userPassword);
             ResultSet result = stm.executeQuery();
             if (result.next()) {
-                return true;
+                int id=result.getInt(1);
+                String name=result.getString(2);
+                user=new User(id,name);
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return user;
     }
 
 
