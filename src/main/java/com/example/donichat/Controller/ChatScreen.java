@@ -51,9 +51,19 @@ public class ChatScreen implements Initializable {
     }
 
     public void fillField(ArrayList<Message>listMessage){
+        String nameUser=user.getName();
+        String nameUser2="";
+        if(user2!=null){
+            nameUser2=user2.getName();
+        }
         conversation.setText("");
         for (int i = 0; i < listMessage.size(); i++) {
-            conversation.setText(conversation.getText()+listMessage.get(i).idSender+": "+listMessage.get(i).getMessage()+"\n");
+            if(listMessage.get(i).getIdSender()==user.getId()){
+                conversation.setText(conversation.getText()+nameUser+": "+listMessage.get(i).getMessage()+"\n"+"\n");
+            }else {
+                conversation.setText(conversation.getText()+nameUser2+": "+listMessage.get(i).getMessage()+"\n"+"\n");
+
+            }
         }
     }
 
