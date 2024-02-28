@@ -40,6 +40,11 @@ public class ChatScreen implements Initializable {
 
     public void fillUsersTable(){
         ArrayList<User> users = c.getUsers();
+        for (int i = 0; i < users.size(); i++) {
+            if(users.get(i).getId()==user.getId()){
+                users.remove(users.get(i));
+            }
+        }
         ObservableList<User> userList = FXCollections.observableArrayList();
 
         userList.addAll(users);
@@ -51,9 +56,21 @@ public class ChatScreen implements Initializable {
     }
 
     public void fillField(ArrayList<Message>listMessage){
+        String name1=user.getName();
+        String name2="";
+
+        if(user2!=null){
+            name2=user2.getName();
+        }
+
         conversation.setText("");
         for (int i = 0; i < listMessage.size(); i++) {
-            conversation.setText(conversation.getText()+listMessage.get(i).idSender+": "+listMessage.get(i).getMessage()+"\n");
+            if(listMessage.get(i).getIdSender()==user.getId()){
+                conversation.setText(conversation.getText()+name1+": "+listMessage.get(i).getMessage()+"\n"+"\n");
+            }else {
+                conversation.setText(conversation.getText()+name2+": "+listMessage.get(i).getMessage()+"\n"+"\n");
+            }
+
         }
     }
 

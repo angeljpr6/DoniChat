@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class Conection {
     public static Connection con = new Conection().conectar();
     private static final String user = "root";
-    private static final String pass = "1234";
+    private static final String pass = "";
     private static final String url = "jdbc:mysql://127.0.0.1:3306/donichat?characterEncoding=utf8";
     public Connection conectar(){
         con = null;
