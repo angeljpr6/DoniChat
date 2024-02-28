@@ -23,6 +23,7 @@ public class ChatScreen implements Initializable {
     public static Client c=new Client();
     public TableView usersTable;
     public TableColumn<User, String> usersNamesColumn;
+    public Label chatSelected;
 
     public void sendMessage(ActionEvent actionEvent) {
         Message m=new Message(user.getId(), user2.getId(), areaMessage.getText());
@@ -58,11 +59,10 @@ public class ChatScreen implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userName.setText(user.getName());
         Thread thread = new Thread(this::periodicTask);
         thread.start();
         fillUsersTable();
-
-
     }
 
     private void periodicTask() {
@@ -82,6 +82,6 @@ public class ChatScreen implements Initializable {
 
     public void changeUser(MouseEvent mouseEvent) {
         user2= (User) usersTable.getSelectionModel().getSelectedItem();
-        System.out.println(user2.getId()+user2.getName());
+        chatSelected.setText(user2.getName());
     }
 }

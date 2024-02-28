@@ -7,18 +7,26 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="443.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donichat.Controller.ChatScreen">
+<AnchorPane prefHeight="470.0" prefWidth="597.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.donichat.Controller.ChatScreen">
    <children>
-      <TextField fx:id="areaMessage" layoutX="119.0" layoutY="343.0" prefHeight="32.0" prefWidth="179.0" />
-      <Button layoutX="313.0" layoutY="341.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="32.0" prefWidth="99.0" text="Button" />
-      <TextArea fx:id="conversation" layoutX="118.0" layoutY="46.0" prefHeight="274.0" prefWidth="288.0" />
-      <Label fx:id="userName" layoutX="41.0" layoutY="14.0" text="User" textFill="WHITE" />
-      <Button layoutX="193.0" layoutY="10.0" mnemonicParsing="false" onAction="#getMessages" text="Button" />
-      <TableView fx:id="usersTable" layoutX="15.0" layoutY="46.0" onMouseClicked="#changeUser" prefHeight="274.0" prefWidth="91.0">
+      <TextField fx:id="areaMessage" layoutX="120.0" layoutY="406.0" prefHeight="32.0" prefWidth="333.0" />
+      <Button layoutX="466.0" layoutY="406.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="32.0" prefWidth="99.0" text="Enviar" />
+      <TextArea fx:id="conversation" layoutX="119.0" layoutY="46.0" prefHeight="341.0" prefWidth="447.0" />
+      <Label fx:id="userName" layoutX="41.0" layoutY="14.0" text="User" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font></Label>
+      <TableView fx:id="usersTable" layoutX="15.0" layoutY="46.0" onMouseClicked="#changeUser" prefHeight="391.0" prefWidth="91.0">
         <columns>
-          <TableColumn fx:id="usersNamesColumn" prefWidth="87.0" text="C1" />
+          <TableColumn fx:id="usersNamesColumn" prefWidth="87.0" text="Chats" />
         </columns>
       </TableView>
+      <Label fx:id="chatSelected" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="14.0" prefHeight="20.0" prefWidth="447.0" text="No hay chat selecionado" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
